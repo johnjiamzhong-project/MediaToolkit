@@ -1,0 +1,46 @@
+# Build
+build/
+out/
+*.exe
+*.dll
+*.lib
+*.pdb
+*.ilk
+*.exp
+*.obj
+*.o
+
+# CMake
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+_deps/
+
+# MSVC
+*.user
+*.suo
+*.sdf
+*.opensdf
+*.VC.db
+*.VC.opendb
+.vs/
+
+# Qt
+*.pro.user
+moc_*.cpp
+moc_*.h
+qrc_*.cpp
+ui_*.h
+
+# VS Code
+.vscode/
+
+# vcpkg
+vcpkg_installed/
+
+# Misc
+*.log
+*.tmp
+Thumbs.db
