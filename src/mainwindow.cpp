@@ -1,4 +1,5 @@
 #include "mainwindow.h"
+#include "media_info/MediaInfoWidget.h"
 
 #include <QTabWidget>
 #include <QLabel>
@@ -22,7 +23,7 @@ MainWindow::MainWindow(QWidget *parent)
     setWindowTitle("MediaToolkit");
     resize(800, 600);
 
-    m_tabs->addTab(makePlaceholder("媒体信息查看器\n（待实现）"), "媒体信息");
+    m_tabs->addTab(new MediaInfoWidget(this),                    "媒体信息");
     m_tabs->addTab(makePlaceholder("视频截图工具\n（待实现）"),   "视频截图");
     m_tabs->addTab(makePlaceholder("音频提取转换\n（待实现）"),   "音频提取");
 
