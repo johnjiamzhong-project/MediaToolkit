@@ -6,7 +6,7 @@
 |------|------|------|---------|
 | Phase 1 | 框架骨架 | ✅ 完成 | 2026-04-30 |
 | Phase 2 | 媒体信息查看器 | ✅ 完成 | 2026-05-03 |
-| Phase 3 | 视频截图工具 | 🔲 未开始 | — |
+| Phase 3 | 视频截图工具 | ✅ 完成 | 2026-05-03 |
 | Phase 4 | 音频提取转换 | 🔲 未开始 | — |
 
 ---
@@ -39,16 +39,19 @@
 
 ---
 
-## Phase 3 — 视频截图工具 🔲
+## Phase 3 — 视频截图工具 ✅
 
-**目标**：在指定时间点截取视频帧，预览并保存 PNG
+**目标**：在指定时间戳处截取视频帧，预览并保存 PNG
 
-**核心 FFmpeg API**：`AVPacket` → `AVFrame` → `sws_scale` → `QImage`
+**核心 FFmpeg API**：`av_seek_frame` → `AVPacket` → `AVFrame` → `sws_scale` → `QImage`
 
-**待完成**
-- [ ] `ScreenshotWorker`：解封装 → 解码 → 取帧 → 转 RGB24
-- [ ] `ScreenshotWidget`：时间点输入 + 预览 + 保存按钮
-- [ ] 替换 Tab 2 占位符
+**完成内容**
+- [x] `ScreenshotWorker`：解封装 → 解码 → `av_seek_frame` 定位时间戳 → `sws_scale` 转 RGB24 → `QImage`
+- [x] `ScreenshotWorker::probeVideo`：读取时长 / 总帧数 / 分辨率 / 帧率，emit `videoInfoReady`
+- [x] `ScreenshotWidget`：时间戳输入（`QTimeEdit` HH:mm:ss.zzz，毫秒精度）+ 视频信息栏 + 预览区 + 同目录保存 PNG
+- [x] 浏览选文件后自动 probe，信息栏展示视频基本信息，`QTimeEdit` 上限自动设为视频时长
+- [x] `QSettings` 持久化上次文件路径，下次启动自动恢复
+- [x] 替换 Tab 2 占位符；CMakeLists 追加 `swscale.lib`
 
 ---
 

@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "media_info/MediaInfoWidget.h"
+#include "screenshot/ScreenshotWidget.h"
 
 #include <QTabWidget>
 #include <QLabel>
@@ -24,7 +25,7 @@ MainWindow::MainWindow(QWidget *parent)
     resize(800, 600);
 
     m_tabs->addTab(new MediaInfoWidget(this),                    "媒体信息");
-    m_tabs->addTab(makePlaceholder("视频截图工具\n（待实现）"),   "视频截图");
+    m_tabs->addTab(new ScreenshotWidget(this),                   "视频截图");
     m_tabs->addTab(makePlaceholder("音频提取转换\n（待实现）"),   "音频提取");
 
     setCentralWidget(m_tabs);

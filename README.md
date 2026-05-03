@@ -15,14 +15,14 @@
 |------|-----------|
 | 编译器 | VS2017 (MSVC) |
 | UI 框架 | Qt 5.14.2 |
-| 媒体库 | FFmpeg（via vcpkg，`D:\vcpkg`） |
+| 媒体库 | FFmpeg（手动安装，`G:\ffmpeg`） |
 | 构建系统 | CMake 3.16+ |
 | C++ 标准 | C++17 |
 
 ## 构建
 
 ```bash
-cmake -B build -DCMAKE_TOOLCHAIN_FILE=D:/vcpkg/scripts/buildsystems/vcpkg.cmake
+cmake -B build
 cmake --build build
 ```
 
@@ -37,10 +37,11 @@ cmake --build build
 
 ### 功能 2 — 视频截图工具
 
-- 解封装 → 解码 → 取第 N 帧
-- `swscale` 转换像素格式为 RGB
-- 保存为 PNG（用 Qt 的 `QImage`）
-- 核心学习：`AVPacket`、`AVFrame`、`sws_scale`
+- 输入时间戳（HH:mm:ss.zzz），`av_seek_frame` 定位后解码取帧
+- 加载文件自动显示时长 / 总帧数 / 分辨率 / 帧率
+- `swscale` 转换像素格式为 RGB，保存为 PNG（用 Qt 的 `QImage`）
+- 记忆上次文件路径，下次启动自动恢复
+- 核心学习：`AVPacket`、`AVFrame`、`av_seek_frame`、`sws_scale`
 
 ### 功能 3 — 音频提取转换
 
