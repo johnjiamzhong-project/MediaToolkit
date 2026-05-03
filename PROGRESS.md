@@ -5,7 +5,7 @@
 | 阶段 | 内容 | 状态 | 完成日期 |
 |------|------|------|---------|
 | Phase 1 | 框架骨架 | ✅ 完成 | 2026-04-30 |
-| Phase 2 | 媒体信息查看器 | 🔲 未开始 | — |
+| Phase 2 | 媒体信息查看器 | ✅ 完成 | 2026-05-03 |
 | Phase 3 | 视频截图工具 | 🔲 未开始 | — |
 | Phase 4 | 音频提取转换 | 🔲 未开始 | — |
 
@@ -25,19 +25,17 @@
 
 ---
 
-## Phase 2 — 媒体信息查看器 🔲
+## Phase 2 — 媒体信息查看器 ✅
 
 **目标**：读取并展示媒体文件的时长、分辨率、编解码器、比特率
 
 **核心 FFmpeg API**：`avformat_open_input` → `avformat_find_stream_info` → `AVStream` / `AVCodecParameters`
 
-**前置条件**：安装 vcpkg + `vcpkg install ffmpeg:x64-windows`
-
-**待完成**
-- [ ] 集成 vcpkg + FFmpeg
-- [ ] `MediaInfoWorker`：后台线程调用 FFmpeg
-- [ ] `MediaInfoWidget`：Qt 界面展示结果
-- [ ] 替换 Tab 1 占位符
+**完成内容**
+- [x] 集成 FFmpeg（`G:\ffmpeg`，手动安装，CMakeLists 直接链接 `.lib`，POST_BUILD 复制 DLL）
+- [x] `MediaInfoWorker`：后台线程调用 FFmpeg，解析容器 / 视频流 / 音频流信息
+- [x] `MediaInfoWidget`：Qt 界面，文件拖放 + 表格展示结果
+- [x] 替换 Tab 1 占位符
 
 ---
 
