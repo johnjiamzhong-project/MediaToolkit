@@ -7,7 +7,7 @@
 | Phase 1 | 框架骨架 | ✅ 完成 | 2026-04-30 |
 | Phase 2 | 媒体信息查看器 | ✅ 完成 | 2026-05-03 |
 | Phase 3 | 视频截图工具 | ✅ 完成 | 2026-05-03 |
-| Phase 4 | 音频提取转换 | 🔲 未开始 | — |
+| Phase 4 | 音频提取转换 | ✅ 完成 | 2026-05-05 |
 
 ---
 
@@ -55,13 +55,14 @@
 
 ---
 
-## Phase 4 — 音频提取转换 🔲
+## Phase 4 — 音频提取转换 ✅
 
 **目标**：从视频提取音轨并输出 MP3 / WAV，实时进度条
 
-**核心 FFmpeg API**：`AVCodecContext` → `SwrContext` → 编码循环
+**核心 FFmpeg API**：`AVCodecContext` → `SwrContext` → `AVAudioFifo` → 编码循环
 
-**待完成**
-- [ ] `AudioWorker`：解封装 → 找音频流 → 解码 → 重采样 → 编码写文件
-- [ ] `AudioWidget`：格式选择 + 输出路径 + 进度条
-- [ ] 替换 Tab 3 占位符
+**完成内容**
+- [x] `AudioWorker`：解封装 → 找音频流 → 解码 → `swr_convert` 重采样 → `AVAudioFifo` 缓冲 → 编码 → 写文件；支持取消
+- [x] `AudioWidget`：格式选择（MP3/WAV）+ 输出路径自动生成 + 进度条 + 开始/取消按钮；`QSettings` 持久化上次路径
+- [x] 替换 Tab 3 占位符；CMakeLists 追加 `swresample.lib`
+- [x] 使用 FFmpeg 7.x 新 API（`AVChannelLayout` / `swr_alloc_set_opts2`）

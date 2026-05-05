@@ -19,6 +19,7 @@ set(FFMPEG_LIBRARIES
     "${FFMPEG_ROOT}/lib/avcodec.lib"
     "${FFMPEG_ROOT}/lib/avutil.lib"
     "${FFMPEG_ROOT}/lib/swscale.lib"
+    "${FFMPEG_ROOT}/lib/swresample.lib"
 )
 
 set(SOURCES
@@ -28,6 +29,8 @@ set(SOURCES
     src/media_info/MediaInfoWidget.cpp
     src/screenshot/ScreenshotWorker.cpp
     src/screenshot/ScreenshotWidget.cpp
+    src/audio/AudioWorker.cpp
+    src/audio/AudioWidget.cpp
 )
 
 set(HEADERS
@@ -36,6 +39,8 @@ set(HEADERS
     src/media_info/MediaInfoWidget.h
     src/screenshot/ScreenshotWorker.h
     src/screenshot/ScreenshotWidget.h
+    src/audio/AudioWorker.h
+    src/audio/AudioWidget.h
 )
 
 add_executable(${PROJECT_NAME} WIN32 ${SOURCES} ${HEADERS})
